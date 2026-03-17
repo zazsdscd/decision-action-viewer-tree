@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Action Viewer — Investigation Decision Tree</title>
+<title>Arenametrix, Support Decision Tree</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -15,56 +15,32 @@
     flex-direction: column;
     align-items: center;
   }
-  .wrapper { width: 100%; max-width: 660px; }
-
-  /* Header */
+  .wrapper { width: 100%; max-width: 700px; }
   .header { text-align: center; margin-bottom: 28px; }
   .header .eyebrow { color: #888; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
   .header h1 { color: #fff; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
   .header p { color: #555; font-size: 13px; }
-
-  /* Legend */
-  .legend { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 24px; }
-  .badge { padding: 3px 11px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; border: 1px solid #333; background: #1e1e30; color: #aaa; }
-
-  /* Breadcrumb */
   .breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin-bottom: 14px; min-height: 20px; }
   .breadcrumb span { color: #444; font-size: 11px; }
   .breadcrumb span.active { color: #ccc; }
-
-  /* Main card */
   .card { background: #1a1a2e; border: 1px solid #2a2a42; border-radius: 10px; padding: 24px; }
-
-  /* Question */
   .question { color: #e0e0f0; font-weight: 600; font-size: 15px; line-height: 1.6; padding: 14px 16px; background: #111120; border-radius: 6px; border: 1px solid #2a2a42; margin-bottom: 14px; }
-
-  /* Options */
   .options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
   .option-btn { background: #111120; border: 1px solid #2a2a42; border-radius: 6px; color: #bbb; padding: 11px 16px; text-align: left; cursor: pointer; font-size: 13px; line-height: 1.5; font-family: inherit; transition: border-color 0.15s, color 0.15s; }
   .option-btn:hover { border-color: #555; color: #fff; }
-
-  /* Result */
+  .action-box { background: #111120; border: 1px solid #3a3a55; border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; }
+  .action-box .action-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #666; margin-bottom: 8px; }
+  .action-box .action-title { color: #fff; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
+  .action-box .action-body { color: #999; font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
+  .action-box .action-body code { background: #1e1e30; color: #ccc; padding: 1px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 12px; border: 1px solid #333; }
+  .btn-action { background: #1e1e30; border: 1px solid #3a3a55; border-radius: 6px; color: #ccc; padding: 11px 20px; cursor: pointer; font-size: 13px; font-weight: 600; font-family: inherit; width: 100%; text-align: left; transition: border-color 0.15s, color 0.15s; margin-bottom: 6px; }
+  .btn-action:last-child { margin-bottom: 0; }
+  .btn-action:hover { border-color: #555; color: #fff; }
   .result { background: #111120; border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; border: 1px solid #2a2a42; }
   .result .result-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #666; margin-bottom: 8px; }
   .result .result-title { color: #fff; font-weight: 700; font-size: 15px; margin-bottom: 10px; border-bottom: 1px solid #2a2a42; padding-bottom: 10px; }
   .result .result-body { color: #aaa; font-size: 13px; line-height: 1.7; }
-
-  /* Confirmation step */
-  .confirm-box { background: #111120; border: 1px solid #3a3a55; border-radius: 8px; padding: 18px 20px; margin-bottom: 16px; }
-  .confirm-box .confirm-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #666; margin-bottom: 8px; }
-  .confirm-box .confirm-title { color: #fff; font-weight: 700; font-size: 15px; margin-bottom: 12px; }
-  .confirm-box .confirm-hint { color: #999; font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
-  .confirm-box .confirm-hint code { background: #1e1e30; color: #ccc; padding: 1px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 12px; border: 1px solid #333; }
-  .btn-confirm { background: #1e1e30; border: 1px solid #3a3a55; border-radius: 6px; color: #ccc; padding: 11px 20px; cursor: pointer; font-size: 13px; font-weight: 600; font-family: inherit; width: 100%; text-align: left; transition: border-color 0.15s, color 0.15s; }
-  .btn-confirm:hover { border-color: #555; color: #fff; }
-
-  /* Not relevant */
-  .not-relevant { background: #111120; border: 1px solid #2a2a42; border-radius: 8px; padding: 18px 20px; margin-bottom: 14px; }
-  .not-relevant .nr-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #666; margin-bottom: 8px; }
-  .not-relevant .nr-title { color: #fff; font-weight: 700; font-size: 15px; margin-bottom: 10px; }
-  .not-relevant .nr-body { color: #aaa; font-size: 13px; line-height: 1.7; }
-
-  /* Nav */
+  .result .result-body code { background: #1e1e30; color: #ccc; padding: 1px 6px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 12px; border: 1px solid #333; }
   .nav { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
   .btn-back { background: transparent; border: 1px solid #2a2a42; color: #555; border-radius: 6px; padding: 5px 14px; cursor: pointer; font-size: 12px; font-family: inherit; transition: color 0.15s, border-color 0.15s; }
   .btn-back:hover { color: #aaa; border-color: #444; }
@@ -75,64 +51,120 @@
 <body>
 <div class="wrapper">
   <div class="header">
-    <div class="eyebrow">Arenametrix · Action Viewer</div>
-    <h1>Investigation Decision Tree</h1>
-    <p>Answer each question to find the right tool and next action</p>
+    <div class="eyebrow">Arenametrix, Support</div>
+    <h1>Support Decision Tree</h1>
+    <p>Start with the ticket type to get the investigation steps</p>
   </div>
-
-  <div class="legend">
-    <span class="badge">Action Viewer</span>
-    <span class="badge">Brevo Logs</span>
-    <span class="badge">Brevo Campaign</span>
-    <span class="badge">Escalate Tech</span>
-    <span class="badge">Inform Client</span>
-    <span class="badge">Expected Behaviour</span>
-  </div>
-
   <div class="breadcrumb" id="breadcrumb"></div>
   <div class="card" id="card"></div>
-  <button class="btn-reset-link" id="reset-btn" style="display:none" onclick="reset()">Reset to beginning</button>
+  <button class="btn-reset-link" id="reset-btn" style="display:none" onclick="reset()">Start over</button>
 </div>
 
 <script>
 const tree = {
-  q: "What is the client reporting?",
+  q: "What area does the bug affect?",
   opts: [
     {
-      l: "An email was not sent or not received",
+      l: "Campaign or email",
       next: {
-        confirm: true,
-        title: "Action Viewer is relevant here",
-        hint: "Log into the client's tenant account and open the Action Viewer. Filter by <code>Nom = list_sent</code> and set the time window.",
+        action: true,
+        label: "Step 1, Try to reproduce the bug yourself",
+        title: "Always investigate before escalating",
+        body: "Log into the client's tenant account. Try to reproduce the exact behaviour they reported. Do not escalate until you have attempted to reproduce it.",
         next: {
-          q: "Was the campaign supposed to be sent manually or automatically?",
+          q: "Were you able to reproduce the bug?",
           opts: [
             {
-              l: "Manually by the client",
+              l: "Yes, I can reproduce it",
               next: {
-                q: "Does a list_sent entry exist in the Action Viewer for that list and time window?",
-                opts: [
-                  { l: "No entry found", r: { label:"Inform Client", title:"Inform the client", body:"The send was never triggered in Arenametrix. The client did not click Send, or clicked it on the wrong list. No platform failure. Ask the client to verify their action." } },
-                  { l: "Entry exists — Status 200", next: {
-                    q: "Was the email received by any recipients at all?",
-                    opts: [
-                      { l: "No one received it", r: { label:"Brevo Campaign", title:"Check Brevo campaign reports", body:"The send was logged successfully in Arenametrix. The issue is in email delivery. Open Brevo campaign reports to check send status, bounces, and delivery errors for that campaign." } },
-                      { l: "Some received it, others didn't", r: { label:"Brevo Campaign", title:"Check Brevo reports + contact blacklist", body:"Partial delivery: check Brevo campaign reports for individual contact status. Also check the Action Viewer for contact_email_blacklisted entries on the affected contacts — they may have been blacklisted before the send." } }
-                    ]
-                  }},
-                  { l: "Entry exists — Status 400", r: { label:"Inform Client", title:"Read Message field — inform client", body:"The send was attempted but rejected. Read the Message field in the Action Viewer entry. The rejection reason will be there (e.g. list is empty, invalid configuration). Share the reason with the client and ask them to correct it." } }
-                ]
+                action: true,
+                label: "Step 2, Check the Action Viewer",
+                title: "Look for list_sent and related actions",
+                body: "Filter by <code>Nom = list_sent</code> in the Action Viewer. Check the Status and read the Message field if 400. Also check <code>cron_itr_started</code> if the send was automated.",
+                next: {
+                  q: "What does the Action Viewer show?",
+                  opts: [
+                    { l: "list_sent exists, Status 400", r: { label: "Inform Client", title: "Campaign rejected, data issue", body: "The send was attempted but rejected by the platform. Read the Message field for the exact reason (empty list, configuration error, etc.). Share the reason with the client and ask them to correct it." } },
+                    { l: "list_sent exists, Status 200 but email not received", r: { label: "Check Brevo", title: "Send logged, issue is in delivery", body: "Arenametrix successfully triggered the send. The issue is on the Brevo side. Open Brevo campaign reports and check delivery status, bounces, and spam flags for the affected contacts." } },
+                    { l: "No list_sent entry at all", r: { label: "Inform Client", title: "Send was never triggered", body: "No list_sent entry exists in the time window. The campaign was never triggered from Arenametrix. Ask the client to confirm whether they clicked Send, and on which list and environment." } },
+                    { l: "cron_itr_started missing for an automated send", r: { label: "Escalate Tech", title: "Scheduler did not fire", body: "The cron job did not run at the expected time. This is a system-level failure. Escalate to tech with the expected schedule, time window, and tenant." } }
+                  ]
+                }
               }
             },
             {
-              l: "Automatically (cron / automation)",
+              l: "No, I cannot reproduce it",
+              r: { label: "Inform Client, Dev ticket if UX issue", title: "Bug not reproduced, check if UX improvement needed", body: "If the behaviour works correctly on your end, the bug may be environment-specific, browser-specific, or a one-off. Inform the client it is working correctly and ask them to retry. If there is a UX gap (e.g. missing loading indicator, unclear feedback), open a dev ticket for a UX improvement, not a bug fix." }
+            }
+          ]
+        }
+      }
+    },
+    {
+      l: "Contact missing, deleted, or data changed unexpectedly",
+      next: {
+        action: true,
+        label: "Step 1, Check the Action Viewer",
+        title: "Look for deletion, anonymization, or update events",
+        body: "Filter the Action Viewer by <code>contact_deleted</code>, <code>contacts_deleted</code>, <code>contact_anonymized</code>, or <code>contact_updated</code>. Set the time window around when the client last saw the contact correctly.",
+        next: {
+          q: "What does the Action Viewer show?",
+          opts: [
+            { l: "contact_deleted / contacts_deleted, Author is a user", r: { label: "Inform Client", title: "A user deleted the contact manually", body: "Show the client the Author and timestamp. This is a user action, not a platform bug. Check whether contact_restored is available as an option." } },
+            { l: "contact_updated, Source is captain_hook, Author empty", next: {
+              action: true,
+              label: "Step 2, Investigate on the Brevo side",
+              title: "The change came from Brevo via captain_hook",
+              body: "The modification was triggered by a Brevo event. Open Brevo, find the contact, and check their event history and any recent imports or automations that may have overwritten the data.",
               next: {
-                q: "Does a cron_itr_started or activate_automation entry exist in the expected time window?",
+                q: "What does Brevo show?",
                 opts: [
-                  { l: "No entry found", r: { label:"Escalate Tech", title:"Escalate to tech", body:"The scheduler did not fire. There is no record of the automation or cron running at the expected time. This is a system-level failure inside Walnut. Escalate with the expected schedule and time window." } },
-                  { l: "Entry exists — Status 200, but no list_sent follows", r: { label:"Escalate Tech", title:"Escalate to tech", body:"The cron ran successfully but did not trigger the send. The automation logic may have a condition that was not met, or there is a processing bug. Escalate with the cron log ID and the expected list_sent that is missing." } },
-                  { l: "Entry exists — Status 400", r: { label:"Escalate Tech", title:"Read Message — escalate to tech", body:"The automation fired but was rejected. Read the Message field and include it in your escalation. This could be a misconfigured automation rule or a data issue the automation is hitting repeatedly." } }
+                  { l: "Two contacts share the same phone number (uniqueness conflict)", r: { label: "Inform Client", title: "Brevo uniqueness conflict, duplicate phone number", body: "Brevo uses phone number as a uniqueness key. If two contacts share the same number, Brevo cannot update the second one and the sync breaks. The contact will stop receiving updates. Ask the client to correct the duplicate phone number." } },
+                  { l: "Nothing visible in Brevo", r: { label: "Escalate Tech", title: "Escalate, no clear cause found", body: "The Action Viewer shows a captain_hook update but Brevo shows nothing that explains it. Escalate to tech with the contact ID, the contact_updated log ID, and the Brevo contact URL." } }
                 ]
+              }
+            }},
+            { l: "contact_updated, Source is walnut, Author empty", next: {
+              q: "Is there a file_imported or data_source_imported entry just before?",
+              opts: [
+                { l: "Yes, an import preceded it", r: { label: "Inform Client", title: "Contact updated by an import", body: "The change was made as part of a file import. The imported file overwrote existing contact fields. Ask the client to review the imported file." } },
+                { l: "No, no import in that window", r: { label: "Escalate Tech", title: "Unexplained background modification", body: "A Walnut background process modified the contact with no clear trigger. Escalate with the contact_updated log ID and the contact ID." } }
+              ]
+            }},
+            { l: "No entry found at all", r: { label: "Escalate Tech", title: "Data changed with no log, data integrity issue", body: "The contact was modified or deleted but there is no log entry. The change bypassed the logging layer. Escalate immediately with the contact ID." } }
+          ]
+        }
+      }
+    },
+    {
+      l: "Contact missing from a list / wrong list membership",
+      next: {
+        action: true,
+        label: "Step 1, Check the list type and segmentation",
+        title: "Reproduce the segmentation yourself first",
+        body: "Before opening the Action Viewer, log into the tenant and manually redo the segmentation to verify whether the criteria actually match the contact. Check the purchase history, dates, and criteria carefully.",
+        next: {
+          q: "Is the segmentation correct when you redo it manually?",
+          opts: [
+            {
+              l: "No, the criteria are wrong or incomplete",
+              r: { label: "Inform Client", title: "Criteria issue, inform and correct", body: "The list criteria do not correctly capture the intended segment. Explain to the client what the criteria should be and help them correct the segmentation." }
+            },
+            {
+              l: "Yes, criteria seem correct but contact is still missing",
+              next: {
+                action: true,
+                label: "Step 2, Check Brevo notifications",
+                title: "Look for import or sync errors in Brevo",
+                body: "Open Brevo and check the notifications and import history for that contact. Look for errors that would explain why the contact was not pushed to Brevo or not added to the list, in particular check for uniqueness conflicts (duplicate phone number or email).",
+                next: {
+                  q: "What does Brevo show?",
+                  opts: [
+                    { l: "Import error, duplicate phone number or email", r: { label: "Inform Client", title: "Brevo uniqueness conflict blocking the sync", body: "Brevo cannot import the contact because another contact shares the same phone number or email (uniqueness key). The contact exists in Arenametrix but cannot be pushed to Brevo and therefore cannot appear in the Brevo list. Ask the client to identify and correct the duplicate." } },
+                    { l: "Contact was never pushed to Brevo", r: { label: "Escalate Tech", title: "Contact not synced to Brevo, escalate", body: "The contact exists in Arenametrix but was never pushed to Brevo. This is a sync issue. Escalate to tech with the contact ID and the list ID." } },
+                    { l: "Nothing visible, old purchase may not have been re-evaluated", r: { label: "Escalate Tech", title: "Criteria re-evaluation issue, escalate", body: "The contact's purchase was made before the time window entered the evaluation period. The dynamic list may not have re-evaluated old purchases when the time window was reached. Escalate to tech with the contact ID, the list name, and the purchase date." } }
+                  ]
+                }
               }
             }
           ]
@@ -140,215 +172,19 @@ const tree = {
       }
     },
     {
-      l: "A contact is missing or was deleted",
+      l: "Import failed or data wrong after import",
       next: {
-        confirm: true,
-        title: "Action Viewer is relevant here",
-        hint: "Log into the client's tenant account and open the Action Viewer. Filter by <code>Nom = contact_deleted</code>, <code>contacts_deleted</code>, or <code>contact_anonymized</code>. Set the time window around when the contact was last seen.",
+        action: true,
+        label: "Step 1, Check the Action Viewer",
+        title: "Filter by file_imported",
+        body: "Filter the Action Viewer by <code>Nom = file_imported</code> for the time window when the client uploaded the file. Check the Status and Message field.",
         next: {
-          q: "Does a deletion or anonymization entry exist in the Action Viewer? (contact_deleted, contacts_deleted, contact_anonymized)",
+          q: "What does the Action Viewer show?",
           opts: [
-            { l: "Yes — Author is a user name", r: { label:"Inform Client", title:"Inform the client", body:"A user manually deleted or anonymized the contact. Show the client the Author and timestamp. This is user action, not a platform bug. Check if contact_restored is an option." } },
-            { l: "Yes — Author is empty, Source is walnut", r: { label:"Escalate Tech", title:"Escalate to tech", body:"The contact was deleted by an automated process inside Walnut (cron, automation rule, background task). This is unexpected automated behaviour. Escalate with the log ID and deletion timestamp." } },
-            { l: "Yes — Source is captain_hook", r: { label:"Brevo Logs", title:"Investigate Brevo", body:"The deletion or update was triggered by a Brevo event relayed through captain_hook. The origin is outside Arenametrix. Check the Brevo contact record and event logs to understand what triggered this webhook." } },
-            { l: "No entry found at all", r: { label:"Escalate Tech", title:"Escalate to tech", body:"The contact disappeared but there is no log of a deletion. This is a data integrity issue — something removed the contact without triggering the logging layer. Escalate to tech immediately with the contact ID." } }
-          ]
-        }
-      }
-    },
-    {
-      l: "Contact data changed unexpectedly",
-      next: {
-        confirm: true,
-        title: "Action Viewer is relevant here",
-        hint: "Log into the client's tenant account and open the Action Viewer. Filter by <code>Nom = contact_updated</code>. Search for the specific contact name or ID, and set the time window to when the change was noticed.",
-        next: {
-          q: "Does a contact_updated entry exist in the Action Viewer for that contact and time window?",
-          opts: [
-            { l: "Yes — Author is a user name", r: { label:"Inform Client", title:"Inform the client", body:"A user made the change manually. Show the client the Author and timestamp. Ask them to check if a colleague edited the contact." } },
-            { l: "Yes — Source is captain_hook, Author is empty", r: { label:"Brevo Logs", title:"Investigate Brevo", body:"The change came from Brevo via captain_hook. A Brevo-side event (field sync, import, automation) overwrote the contact data in Arenametrix. Check the Brevo contact record and recent Brevo imports or automations." } },
-            { l: "Yes — Source is walnut, Author is empty", next: {
-              q: "Was there a file_imported or data_source_imported entry just before the contact_updated?",
+            { l: "No file_imported entry", r: { label: "Inform Client", title: "File was never submitted", body: "The platform never received the file. The client may not have confirmed the upload or used the wrong environment." } },
+            { l: "file_imported, Status 400", r: { label: "Inform Client", title: "File rejected, read Message field", body: "The file was received but rejected. Read the Message field for the exact reason (wrong format, missing columns, encoding issue). Share the details with the client." } },
+            { l: "file_imported, Status 200 but data is wrong", next: {
+              q: "Are there contact_updated entries with Status 400 after the import?",
               opts: [
-                { l: "Yes — an import preceded it", r: { label:"Inform Client", title:"Inform the client", body:"The contact was updated as part of an import. The import overwrote existing fields. Ask the client to review the imported file — the new values came from there." } },
-                { l: "No — no import in that window", r: { label:"Escalate Tech", title:"Escalate to tech", body:"A background process in Walnut modified the contact with no clear trigger. This is unexpected automated behaviour. Escalate with the contact_updated log ID and the contact ID." } }
-              ]
-            }},
-            { l: "No entry found at all", r: { label:"Escalate Tech", title:"Escalate to tech", body:"Data changed but there is no contact_updated log. The modification bypassed the logging layer. Escalate to tech as a data integrity issue." } }
-          ]
-        }
-      }
-    },
-    {
-      l: "Import failed or data is wrong after import",
-      next: {
-        confirm: true,
-        title: "Action Viewer is relevant here",
-        hint: "Log into the client's tenant account and open the Action Viewer. Filter by <code>Nom = file_imported</code>. Set the time window to when the client says they uploaded the file.",
-        next: {
-          q: "Does a file_imported entry exist in the Action Viewer?",
-          opts: [
-            { l: "No entry found", r: { label:"Inform Client", title:"Inform the client", body:"The file was never submitted to the platform. The client may not have confirmed the upload, or uploaded to the wrong environment. Ask them to retry." } },
-            { l: "Yes — Status 400", r: { label:"Inform Client", title:"Read Message — inform client", body:"The file was received but rejected. The Message field will explain why (wrong format, missing columns, encoding issue). Share the reason with the client and ask them to correct the file." } },
-            { l: "Yes — Status 200, but data looks wrong", next: {
-              q: "Are there contact_updated entries with Status 400 immediately after the file_imported?",
-              opts: [
-                { l: "Yes — some rows failed (400s present)", r: { label:"Inform Client", title:"Inform the client", body:"The file was accepted but specific rows were rejected. Read the Message on the failing contact_updated entries to identify which fields are invalid. Ask the client to correct those rows and re-import." } },
-                { l: "No — all 200s but data is still wrong", r: { label:"Escalate Tech", title:"Escalate to tech", body:"The import completed successfully but the resulting data is incorrect. This is a processing bug inside Walnut (field mapping, transformation, overwrite logic). Escalate with the file_imported log ID and examples of the wrong data." } }
-              ]
-            }}
-          ]
-        }
-      }
-    },
-    {
-      l: "List membership is wrong",
-      next: {
-        confirm: true,
-        title: "Action Viewer is relevant here",
-        hint: "Log into the client's tenant account and open the Action Viewer. Filter by <code>Nom = contact_added_to_lists</code>, <code>contacts_deleted_from_list</code>, or <code>list_criterias_updated</code>. Set the time window to when the membership change was noticed.",
-        next: {
-          q: "Is the list dynamic (criteria-based) or static (manual)?",
-          opts: [
-            { l: "Dynamic list", next: {
-              q: "Does a list_criterias_updated entry exist recently?",
-              opts: [
-                { l: "Yes", r: { label:"Inform Client", title:"Inform the client", body:"The list criteria were recently modified. A user changed the rules that define membership. Show the client the list_criterias_updated entry with the Author and timestamp." } },
-                { l: "No — contacts appeared or disappeared on their own", r: { label:"Expected Behaviour", title:"Expected behaviour", body:"Dynamic lists recalculate membership automatically based on contact field values. If contact data changed (check contact_updated entries), list membership will change accordingly. This is normal — not a bug." } }
-              ]
-            }},
-            { l: "Static list", next: {
-              q: "Does a contact_added_to_lists, contacts_added_to_list, contact_deleted_from_lists, or contacts_deleted_from_list entry exist?",
-              opts: [
-                { l: "Yes — Author is a user name", r: { label:"Inform Client", title:"Inform the client", body:"A user manually modified the list membership. Show the Author and timestamp." } },
-                { l: "Yes — Source is captain_hook", r: { label:"Brevo Logs", title:"Investigate Brevo", body:"Brevo pushed a list membership change via captain_hook. The origin is a Brevo-side event. Check the Brevo contact and list configuration." } },
-                { l: "No entry found", r: { label:"Escalate Tech", title:"Escalate to tech", body:"List membership changed with no log entry. This is a data integrity issue. Escalate with the list ID and affected contact IDs." } }
-              ]
-            }}
-          ]
-        }
-      }
-    },
-    
-    {
-      l: "User cannot log in",
-      next: {
-        confirm: true,
-        title: "Action Viewer may be useful here",
-        hint: "Log into the client's tenant account and open the Action Viewer. Filter by <code>Nom = user_logged_on</code> or <code>user_logged_off</code> and search for the user's name.",
-        next: {
-          q: "Do recent user_logged_on entries exist for that user?",
-          opts: [
-            { l: "Yes — recent login entries exist", r: { label:"Inform Client", title:"Inform the client", body:"The user successfully logged in recently. The issue is likely browser-related or session-related (cookie, cache, wrong environment). Ask them to clear their browser cache or try a different browser." } },
-            { l: "No entries exist at all for that user", r: { label:"Escalate Tech", title:"Escalate to tech", body:"No login records found. This could be an authentication issue, a misconfigured account, or the user is logging in on the wrong environment. Escalate to tech with the username and the environment (prod/demo/dev) they are trying to access." } }
-          ]
-        }
-      }
-    }
-  ]
-};
-
-let history = [];
-let current = tree;
-
-function truncate(str, n) {
-  const clean = str.replace(/<[^>]+>/g, '');
-  const words = clean.split(' ');
-  return words.length > n ? words.slice(0, n).join(' ') + '...' : clean;
-}
-
-function render() {
-  const card = document.getElementById('card');
-  const bc = document.getElementById('breadcrumb');
-  const resetBtn = document.getElementById('reset-btn');
-
-  bc.innerHTML = history.length === 0 ? '' : history.map((node, i) => {
-    const label = node.q || node.title || '';
-    return `<span class="${i === history.length-1 ? 'active' : ''}">${i > 0 ? '<span style="color:#333;margin:0 2px">›</span>' : ''}${truncate(label, 4)}</span>`;
-  }).join('');
-
-  resetBtn.style.display = history.length > 0 ? 'block' : 'none';
-
-  const backBtn = history.length > 0 ? '<button class="btn-back" onclick="goBack()">Back</button>' : '';
-  const resetBtnHtml = '<button class="btn-back" onclick="reset()">Start over</button>';
-
-  // Not relevant
-  if (current.notrelevant) {
-    card.innerHTML = `
-      <div class="not-relevant">
-        <div class="nr-label">Not applicable</div>
-        <div class="nr-title">${current.title}</div>
-        <div class="nr-body">${current.body}</div>
-      </div>
-      <div class="nav">${backBtn}${resetBtnHtml}</div>`;
-    return;
-  }
-
-  // Result
-  if (current.r) {
-    const { label, title, body } = current.r;
-    card.innerHTML = `
-      <div class="result">
-        <div class="result-label">${label}</div>
-        <div class="result-title">${title}</div>
-        <div class="result-body">${body}</div>
-      </div>
-      <div class="nav">${backBtn}${resetBtnHtml}</div>`;
-    return;
-  }
-
-  // Confirmation step
-  if (current.confirm) {
-    card.innerHTML = `
-      <div class="confirm-box">
-        <div class="confirm-label">Action required</div>
-        <div class="confirm-title">${current.title}</div>
-        <div class="confirm-hint">${current.hint}</div>
-        <button class="btn-confirm" onclick="confirmStep()">I am in the Action Viewer, continue investigation</button>
-      </div>
-      ${history.length > 0 ? '<div class="nav">' + backBtn + '</div>' : ''}`;
-    return;
-  }
-
-  // Question
-  const optionsHtml = current.opts.map((opt, i) =>
-    `<button class="option-btn" onclick="choose(${i})">${opt.l}</button>`
-  ).join('');
-
-  card.innerHTML = `
-    <div class="question">${current.q}</div>
-    <div class="options">${optionsHtml}</div>
-    ${history.length > 0 ? '<div class="nav">' + backBtn + '</div>' : ''}`;
-}
-
-function choose(i) {
-  const opt = current.opts[i];
-  history.push(current);
-  if (opt.notrelevant) current = opt;
-  else if (opt.r) current = { r: opt.r };
-  else current = opt.next;
-  render();
-}
-
-function confirmStep() {
-  history.push(current);
-  current = current.next;
-  render();
-}
-
-function goBack() {
-  if (history.length === 0) return;
-  current = history.pop();
-  render();
-}
-
-function reset() {
-  history = [];
-  current = tree;
-  render();
-}
-
-render();
-</script>
-</body>
-</html>
+                { l: "Yes, some rows have 400 errors", r: { label: "Inform Client", title: "Partial import, specific rows failed", body: "The file was accepted but individual rows were rejected. Check the Message field on each failing contact_updated entry to identify which fields are invalid. Ask the client to correct those rows and re-import." } },
+                { l: "No, all 200s but data is wrong", r: { label: "Escalate Tech", title: "Import succeeded but data is incorrect", body: "The import completed without errors but the resulting data is wrong. This is a processing bug inside Walnut (field mapping, transformation, overwrite logic
