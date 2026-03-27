@@ -81,14 +81,14 @@ const tree = {
                     next: {
                       action: true,
                       label: "Step 2, Check the Action Viewer",
-                      title: "Look for list_sent and related actions",
-                      body: "Filter by <code>Nom = list_sent</code> in the Action Viewer. Check the Status and read the Message field if 400. Also check <code>cron_itr_started</code> if the send was automated.",
+                      title: "Look for list and related actions",
+                      body: "Filter by <code>Nom = list</code> in the Action Viewer. Check the Status and read the Message field if 400. Also check <code>cron_itr_started</code> if the send was automated.",
                       next: {
                         q: "What does the Action Viewer show?",
                         opts: [
-                          { l: "list_sent exists, Status 400", r: { label: "Inform Client", title: "Campaign rejected, data issue", body: "The send was attempted but rejected by the platform. Read the Message field for the exact reason (empty list, configuration error, etc.). Share the reason with the client and ask them to correct it." } },
-                          { l: "list_sent exists, Status 200 but email not received", r: { label: "Check Brevo", title: "Send logged, issue is in delivery", body: "Arenametrix successfully triggered the send. The issue is on the Brevo side. Open Brevo campaign reports and check delivery status, bounces, and spam flags for the affected contacts." } },
-                          { l: "No list_sent entry at all", r: { label: "Inform Client", title: "Send was never triggered", body: "No list_sent entry exists in the time window. The campaign was never triggered from Arenametrix. Ask the client to confirm whether they clicked Send, and on which list and environment." } },
+                          { l: "list exists, Status 400", r: { label: "Inform Client", title: "Campaign rejected, data issue", body: "The send was attempted but rejected by the platform. Read the Message field for the exact reason (empty list, configuration error, etc.). Share the reason with the client and ask them to correct it." } },
+                          { l: "list exists, Status 200 but email not received", r: { label: "Check Brevo", title: "Send logged, issue is in delivery", body: "Arenametrix successfully triggered the send. The issue is on the Brevo side. Open Brevo campaign reports and check delivery status, bounces, and spam flags for the affected contacts." } },
+                          { l: "No list entry at all", r: { label: "Inform Client", title: "Send was never triggered", body: "No list entry exists in the time window. The campaign was never triggered from Arenametrix. Ask the client to confirm whether they clicked Send, and on which list and environment." } },
                           { l: "cron_itr_started missing for an automated send", r: { label: "Escalate Tech", title: "Scheduler did not fire", body: "The cron job did not run at the expected time. This is a system-level failure. Escalate to tech with the expected schedule, time window, and tenant." } }
                         ]
                       }
