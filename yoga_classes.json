@@ -1,0 +1,34 @@
+{
+  "next_yoga_class": {
+    "class_name": "Sunrise Vinyasa",
+    "studio_location": "Downtown Studio",
+    "date": "2025-03-07",
+    "time": "06:30 AM",
+    "level": "All Levels",
+    "duration": "60 min",
+    "room": "Lotus Room",
+    "instructor": "Emma Thompson"
+  },
+  "following_classes": [
+    {
+      "class_name": "Power Flow Yoga",
+      "studio_location": "Uptown Studio",
+      "date": "2025-03-07",
+      "time": "09:00 AM",
+      "level": "Intermediate",
+      "duration": "75 min",
+      "room": "Sun Room",
+      "instructor": "James Carter"
+    },
+    {
+      "class_name": "Evening Restorative",
+      "studio_location": "Downtown Studio",
+      "date": "2025-03-07",
+      "time": "07:00 PM",
+      "level": "Beginner",
+      "duration": "90 min",
+      "room": "Moon Room",
+      "instructor": "Sophia Lee"
+    }
+  ]
+}
