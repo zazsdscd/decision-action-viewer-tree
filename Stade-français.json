@@ -1,0 +1,49 @@
+{
+  "next_match": {
+    "competition": "Top 14",
+    "home_team": {
+      "name": "Stade Français Paris",
+      "logo_url": "https://raw.githubusercontent.com/ton-user/ton-repo/main/logos/stade-francais.png"
+    },
+    "away_team": {
+      "name": "Toulouse",
+      "logo_url": "https://raw.githubusercontent.com/ton-user/ton-repo/main/logos/toulouse.png"
+    },
+    "date": "2025-05-10",
+    "time": "21:05",
+    "venue": "Jean-Bouin, Paris",
+    "ticket_url": "https://tickets.fanxp.com/match_001"
+  },
+  "following_matches": [
+    {
+      "competition": "Top 14",
+      "home_team": {
+        "name": "Clermont",
+        "logo_url": "https://raw.githubusercontent.com/ton-user/ton-repo/main/logos/clermont.png"
+      },
+      "away_team": {
+        "name": "Stade Français Paris",
+        "logo_url": "https://raw.githubusercontent.com/ton-user/ton-repo/main/logos/stade-francais.png"
+      },
+      "date": "2025-05-18",
+      "time": "15:00",
+      "venue": "Stade Marcel-Michelin, Clermont",
+      "ticket_url": "https://tickets.fanxp.com/match_002"
+    },
+    {
+      "competition": "Top 14",
+      "home_team": {
+        "name": "Stade Français Paris",
+        "logo_url": "https://raw.githubusercontent.com/ton-user/ton-repo/main/logos/stade-francais.png"
+      },
+      "away_team": {
+        "name": "Racing 92",
+        "logo_url": "https://raw.githubusercontent.com/ton-user/ton-repo/main/logos/racing92.png"
+      },
+      "date": "2025-05-24",
+      "time": "16:15",
+      "venue": "Jean-Bouin, Paris",
+      "ticket_url": "https://tickets.fanxp.com/match_003"
+    }
+  ]
+}
