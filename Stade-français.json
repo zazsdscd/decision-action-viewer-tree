@@ -3,11 +3,9 @@
     "competition": "Top 14",
     "home_team": {
       "name": "Stade Français Paris",
-      "logo_url": "https://github.com/zazsdscd/decision-action-viewer-tree/blob/main/logos/%20SF1.png"
     },
     "away_team": {
       "name": "Toulouse",
-      "logo_url": "https://github.com/zazsdscd/decision-action-viewer-tree/blob/main/logos/%20STR.png"
     },
     "date": "2025-05-10",
     "time": "21:05",
@@ -19,11 +17,9 @@
       "competition": "Top 14",
       "home_team": {
         "name": "Clermont",
-        "logo_url": "https://github.com/zazsdscd/decision-action-viewer-tree/blob/main/logos/%20ASM.png"
       },
       "away_team": {
         "name": "Stade Français Paris",
-        "logo_url": "https://github.com/zazsdscd/decision-action-viewer-tree/blob/main/logos/%20SF1.png"
       },
       "date": "2025-05-18",
       "time": "15:00",
@@ -34,11 +30,9 @@
       "competition": "Top 14",
       "home_team": {
         "name": "Stade Français Paris",
-        "logo_url": "https://github.com/zazsdscd/decision-action-viewer-tree/blob/main/logos/%20SF1.png"
       },
       "away_team": {
         "name": "Racing 92",
-        "logo_url": "https://github.com/zazsdscd/decision-action-viewer-tree/blob/main/logos/%20RC92.png"
       },
       "date": "2025-05-24",
       "time": "16:15",
